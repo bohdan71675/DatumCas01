@@ -20,16 +20,21 @@ namespace DatumCas01
         private void button1_Click(object sender, EventArgs e)
         {
             string s = textBox1.Text;
-            DateTime nejstarsi = new DateTime();
             char[] separators = { ' ', ';' };
+            DateTime nejstarsi = new DateTime();
             for (int i = 0; i < textBox1.Lines.Count(); ++i)
             {
                 string[] stringsplit = s.Split(separators, StringSplitOptions.RemoveEmptyEntries);
-                DateTime str = DateTime.Parse(stringsplit[2].ToString());
-                if (str > nejstarsi)
+                DateTime str = DateTime.Parse(textBox1.Lines[i].ToString());
+                while (str > 0)
                 {
-                    nejstarsi = str;
-                }
+                    DateTime idk = DateTime.Parse(stringsplit[2].ToString());
+                    if (idk > nejstarsi)
+                    {
+                        nejstarsi = idk;
+                    }
+                    --str;
+                 }
 
             }
             MessageBox.Show("Datum nejstarší osoby je: " + nejstarsi);
